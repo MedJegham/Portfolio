@@ -1,10 +1,12 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
 
 export function Nav() {
   const { lang, setLang, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
     { href: "#about", label: t.nav.about },
@@ -14,6 +16,23 @@ export function Nav() {
     { href: "#contact", label: t.nav.contact },
   ];
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 780) setMenuOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <motion.header
       className="nav"
@@ -21,9 +40,10 @@ export function Nav() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
-      <a href="#top" className="nav__brand">
+      <a href="#top" className="nav__brand" onClick={closeMenu}>
         MJ
       </a>
+
       <nav className="nav__links" aria-label="Primary">
         {links.map((link) => (
           <a key={link.href} href={link.href}>
@@ -31,6 +51,7 @@ export function Nav() {
           </a>
         ))}
       </nav>
+
       <div className="nav__controls">
         <button
           type="button"
@@ -59,6 +80,7 @@ export function Nav() {
             </svg>
           )}
         </button>
+
         <div className="nav__lang" role="group" aria-label="Language">
           <button
             type="button"
@@ -75,7 +97,40 @@ export function Nav() {
             EN
           </button>
         </div>
+
+        <button
+          type="button"
+          className={`nav__burger${menuOpen ? " is-open" : ""}`}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.nav
+            id="mobile-menu"
+            className="nav__mobile"
+            aria-label="Mobile"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+          >
+            {links.map((link) => (
+              <a key={link.href} href={link.href} onClick={closeMenu}>
+                {link.label}
+              </a>
+            ))}
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

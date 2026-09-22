@@ -7,7 +7,7 @@
   --accent-soft: rgba(26, 92, 74, 0.12);
   --line: rgba(20, 32, 26, 0.12);
   --hero-deep: #0f2a22;
-  --nav-bg: rgba(230, 235, 231, 0.78);
+  --nav-bg: rgba(230, 235, 231, 0.92);
   --control-bg: rgba(255, 255, 255, 0.45);
   --body-glow-1: rgba(26, 92, 74, 0.16);
   --body-glow-2: rgba(180, 140, 70, 0.12);
@@ -15,7 +15,7 @@
   --body-grad-bottom: #eef2ee;
   --font-display: "Syne", sans-serif;
   --font-body: "Outfit", sans-serif;
-  --space: clamp(1.25rem, 3vw, 2.5rem);
+  --space: clamp(1rem, 4vw, 2.5rem);
   --max: 1120px;
   color: var(--ink);
   background: var(--bg);
@@ -35,7 +35,7 @@ html[data-theme="dark"] {
   --accent-soft: rgba(93, 186, 150, 0.14);
   --line: rgba(232, 240, 234, 0.12);
   --hero-deep: #071510;
-  --nav-bg: rgba(13, 20, 17, 0.82);
+  --nav-bg: rgba(13, 20, 17, 0.94);
   --control-bg: rgba(255, 255, 255, 0.06);
   --body-glow-1: rgba(93, 186, 150, 0.1);
   --body-glow-2: rgba(180, 140, 70, 0.08);
@@ -52,21 +52,31 @@ html[data-theme="dark"] {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
-  min-width: 320px;
+  min-width: 0;
+  width: 100%;
+  overflow-x: clip;
   background:
     radial-gradient(ellipse 90% 60% at 10% -10%, var(--body-glow-1), transparent 55%),
     radial-gradient(ellipse 70% 50% at 95% 15%, var(--body-glow-2), transparent 50%),
     linear-gradient(180deg, var(--body-grad-top) 0%, var(--bg) 28%, var(--body-grad-bottom) 100%);
-  background-attachment: fixed;
   transition: background 0.35s ease, color 0.25s ease;
+}
+
+@media (min-width: 781px) {
+  body {
+    background-attachment: fixed;
+  }
 }
 
 #root {
   min-height: 100svh;
+  min-height: 100dvh;
+  overflow-x: clip;
 }
 
 a {
@@ -100,4 +110,6 @@ h2,
 h3,
 p {
   margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
