@@ -187,13 +187,14 @@
   display: grid;
   gap: 0.02em;
   margin: 0;
-  /* Fallback, then container-based fit for "Mohamed" */
-  font-size: clamp(2.05rem, 13vw, 6.6rem);
-  font-size: clamp(2.05rem, 100cqi / 6.75, 6.6rem);
+  width: 100%;
+  /* Conservative base — JS fit scales down further if needed */
+  font-size: min(6.6rem, calc((100vw - 3rem) / 8.8));
   line-height: 0.92;
   letter-spacing: -0.04em;
   color: #f4f7f4;
   max-width: 100%;
+  overflow: visible;
 }
 
 .hero__name-line {
@@ -201,11 +202,18 @@
   font-family: var(--font-display);
   font-weight: 750;
   white-space: nowrap;
-  max-width: 100%;
+  width: max-content;
+  max-width: none;
 }
 
 .hero__name-line--accent {
   color: #c8e6d8;
+}
+
+@media (min-width: 780px) {
+  .hero__name {
+    font-size: clamp(3.8rem, 9vw, 6.6rem);
+  }
 }
 
 .hero__tagline {

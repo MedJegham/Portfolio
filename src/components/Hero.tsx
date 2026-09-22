@@ -1,8 +1,48 @@
+import { useLayoutEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 
+function useFitName() {
+  const ref = useRef<HTMLHeadingElement>(null);
+
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const fit = () => {
+      const lines = el.querySelectorAll<HTMLElement>(".hero__name-line");
+      if (!lines.length) return;
+
+      el.style.fontSize = "";
+      const parentWidth = el.clientWidth;
+      if (parentWidth <= 0) return;
+
+      let widest = 0;
+      lines.forEach((line) => {
+        widest = Math.max(widest, line.scrollWidth);
+      });
+
+      if (widest > parentWidth) {
+        const current = parseFloat(getComputedStyle(el).fontSize);
+        const next = Math.max(18, (current * parentWidth) / widest);
+        el.style.fontSize = `${next}px`;
+      }
+    };
+
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(el);
+    document.fonts?.ready?.then(fit);
+
+    return () => ro.disconnect();
+  }, []);
+
+  return ref;
+}
+
 export function Hero() {
   const { t } = useLanguage();
+  const nameRef = useFitName();
 
   return (
     <section className="hero" id="top" aria-label="Hero">
@@ -18,6 +58,7 @@ export function Hero() {
             {t.hero.role}
           </motion.p>
           <motion.h1
+            ref={nameRef}
             className="hero__name"
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
