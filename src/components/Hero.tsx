@@ -23,8 +23,10 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.28, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            Mohamed
-            <span>Jegham</span>
+            <span className="hero__name-line">Mohamed</span>
+            <span className="hero__name-line hero__name-line--accent">
+              Jegham
+            </span>
           </motion.h1>
           <motion.p
             className="hero__tagline"
