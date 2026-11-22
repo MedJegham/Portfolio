@@ -22,23 +22,22 @@ export const content = {
       openMenu: "Ouvrir le menu",
       closeMenu: "Fermer le menu",
     },
-    intro: "Portfolio — Édition 2026",
     hero: {
-      edition: "Portfolio — Édition 2026",
+      hello: "Bonjour, je suis",
       location: "Sousse, Tunisie",
-      status: "Ouvert aux opportunités",
+      school: "Polytechnique Sousse",
+      status: "Disponible pour un stage ou une collaboration",
+      photoAlt: "Portrait de Mohamed Jegham",
       role: "Ingénieur informatique · Data Science & IA",
       tagline:
         "Je conçois des plateformes web et des systèmes d’intelligence artificielle — de l’ERP métier aux pipelines de prédiction.",
       ctaPrimary: "Me contacter",
       ctaSecondary: "Voir les projets",
-      scroll: "Défiler",
-      now: "En préparation",
+      now: "Projet en cours :",
       nowProject: "CryptoNews Intelligence — Solana",
     },
     about: {
       title: "À propos",
-      heading: { pre: "Du code métier aux ", em: "modèles qui prédisent." },
       lead: "Étudiant ingénieur en informatique à Polytechnique Sousse, je construis des produits full-stack ancrés dans la data et l’IA.",
       body: "Après un cycle préparatoire à l’IPEIM, je développe des applications web, mobiles et des modules de machine learning en conditions réelles — ERP, analyse crypto, détection de fraude. Autonomie, livraison rapide et exigence technique guident mon approche.",
       stats: [
@@ -64,7 +63,6 @@ export const content = {
     },
     experience: {
       title: "Expérience",
-      heading: { pre: "Livré en ", em: "conditions réelles." },
       subtitle: "Stages et missions en conditions réelles.",
       items: [
         {
@@ -108,7 +106,6 @@ export const content = {
     },
     projects: {
       title: "Projets",
-      heading: { pre: "Travaux ", em: "sélectionnés." },
       subtitle: "Sélection de réalisations full-stack et machine learning.",
       featuredLabel: "Projet phare",
       featured: {
@@ -176,16 +173,14 @@ export const content = {
         link: "https://github.com/MedJegham",
         cta: "Suivre le projet",
         demo: {
-          title: "sentiment.classify()",
-          inputLabel: "Titre d’actualité (anglais)",
+          title: "Démo simplifiée — testez un titre",
+          inputLabel: "Titre d’actualité (en anglais)",
           placeholder: "Saisissez un titre en anglais…",
           examples: "Exemples",
-          auto: "auto",
-          manual: "manuel",
           tokens: "Signaux détectés",
           noSignal: "Aucun signal lexical — classe neutre par défaut.",
           classes: { bullish: "Haussier", neutral: "Neutre", bearish: "Baissier" },
-          confidence: "Confiance",
+          confidence: "Confiance :",
           legend: { pos: "haussier", neg: "baissier", negation: "négation", ticker: "ticker" },
           note: "Démo d’interface : lexique jouet exécuté dans votre navigateur, pas le modèle du projet. Titres fictifs.",
         },
@@ -220,7 +215,6 @@ export const content = {
     },
     skills: {
       title: "Compétences",
-      heading: { pre: "Une stack ", em: "de bout en bout." },
       subtitle: "Stack technique utilisée en projet et en stage.",
       groups: [
         {
@@ -269,7 +263,6 @@ export const content = {
     },
     contact: {
       title: "Contact",
-      heading: { pre: "Construisons quelque chose ", em: "d’utile." },
       subtitle: "Ouvert aux stages, missions et collaborations tech.",
       email: "mje.etudes@gmail.com",
       phone: "+216 99 598 368",
@@ -294,23 +287,22 @@ export const content = {
       openMenu: "Open menu",
       closeMenu: "Close menu",
     },
-    intro: "Portfolio — 2026 Edition",
     hero: {
-      edition: "Portfolio — 2026 Edition",
+      hello: "Hi, I’m",
       location: "Sousse, Tunisia",
-      status: "Open to opportunities",
+      school: "Polytechnique Sousse",
+      status: "Available for an internship or collaboration",
+      photoAlt: "Portrait of Mohamed Jegham",
       role: "Computer Engineering · Data Science & AI",
       tagline:
         "I design web platforms and intelligent systems — from business ERPs to prediction pipelines.",
       ctaPrimary: "Get in touch",
       ctaSecondary: "View projects",
-      scroll: "Scroll",
-      now: "In preparation",
+      now: "Current project:",
       nowProject: "CryptoNews Intelligence — Solana",
     },
     about: {
       title: "About",
-      heading: { pre: "From business code to ", em: "models that predict." },
       lead: "Computer engineering student at Polytechnique Sousse, building full-stack products grounded in data and AI.",
       body: "After a preparatory cycle at IPEIM, I ship web, mobile, and machine-learning solutions in real environments — ERPs, crypto analytics, fraud detection. Autonomy, fast delivery, and technical rigor shape how I work.",
       stats: [
@@ -336,7 +328,6 @@ export const content = {
     },
     experience: {
       title: "Experience",
-      heading: { pre: "Shipped in ", em: "real conditions." },
       subtitle: "Internships delivered in production conditions.",
       items: [
         {
@@ -380,7 +371,6 @@ export const content = {
     },
     projects: {
       title: "Projects",
-      heading: { pre: "Selected ", em: "work." },
       subtitle: "Selected full-stack and machine-learning work.",
       featuredLabel: "Featured project",
       featured: {
@@ -448,16 +438,14 @@ export const content = {
         link: "https://github.com/MedJegham",
         cta: "Follow the project",
         demo: {
-          title: "sentiment.classify()",
-          inputLabel: "News headline (English)",
+          title: "Simplified demo — try a headline",
+          inputLabel: "News headline (in English)",
           placeholder: "Type an English headline…",
           examples: "Examples",
-          auto: "auto",
-          manual: "manual",
           tokens: "Detected signals",
           noSignal: "No lexical signal — defaults to neutral.",
           classes: { bullish: "Bullish", neutral: "Neutral", bearish: "Bearish" },
-          confidence: "Confidence",
+          confidence: "Confidence:",
           legend: { pos: "bullish", neg: "bearish", negation: "negation", ticker: "ticker" },
           note: "Interface demo: a toy lexicon running in your browser, not the project’s model. Headlines are fictional.",
         },
@@ -492,7 +480,6 @@ export const content = {
     },
     skills: {
       title: "Skills",
-      heading: { pre: "An ", em: "end-to-end stack." },
       subtitle: "Technical stack used in projects and internships.",
       groups: [
         {
@@ -541,7 +528,6 @@ export const content = {
     },
     contact: {
       title: "Contact",
-      heading: { pre: "Let’s build something ", em: "useful." },
       subtitle: "Open to internships, missions, and tech collaborations.",
       email: "mje.etudes@gmail.com",
       phone: "+216 99 598 368",

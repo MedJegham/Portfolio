@@ -1,178 +1,79 @@
-import { useLayoutEffect, useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
-import { Arrow, Magnetic } from "./ui";
-import { EASE, useClock } from "../lib/motion";
+import portrait from "../assets/mohamed-jegham.webp";
+import { Arrow } from "./ui";
 
-/** Safety net: shrink the name if a line would overflow its container. */
-function useFitName() {
-  const ref = useRef<HTMLHeadingElement>(null);
-
-  useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const fit = () => {
-      const lines = el.querySelectorAll<HTMLElement>(".hero__line-inner");
-      if (!lines.length) return;
-      el.style.fontSize = "";
-      const parentWidth = el.clientWidth;
-      if (parentWidth <= 0) return;
-      let widest = 0;
-      lines.forEach((line) => {
-        const indent = parseFloat(getComputedStyle(line.parentElement!).paddingLeft) || 0;
-        widest = Math.max(widest, line.scrollWidth + indent);
-      });
-      if (widest > parentWidth) {
-        const current = parseFloat(getComputedStyle(el).fontSize);
-        el.style.fontSize = `${Math.max(18, (current * parentWidth) / widest)}px`;
-      }
-    };
-
-    fit();
-    const ro = new ResizeObserver(fit);
-    ro.observe(el);
-    document.fonts?.ready?.then(fit);
-    return () => ro.disconnect();
-  }, []);
-
-  return ref;
-}
-
-export function Hero({ ready }: { ready: boolean }) {
+export function Hero() {
   const { t } = useLanguage();
-  const nameRef = useFitName();
-  const sectionRef = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion();
-  const time = useClock("Africa/Tunis");
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const nameY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "28%"]);
-  const fade = useTransform(scrollYProgress, [0, 0.75], [1, reduce ? 1 : 0]);
-  const auroraY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "18%"]);
-
-  const state = ready ? "show" : "hidden";
-  const line = {
-    hidden: { y: "110%" },
-    show: (i: number) => ({
-      y: "0%",
-      transition: { duration: 1.25, delay: 0.1 + i * 0.12, ease: EASE },
-    }),
-  };
-  const fadeUp = {
-    hidden: { opacity: 0, y: 18 },
-    show: (delay: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.9, delay, ease: EASE },
-    }),
-  };
+  const h = t.hero;
 
   return (
-    <section className="hero" id="top" ref={sectionRef} aria-label="Intro">
-      <motion.div className="hero__aurora" style={{ y: auroraY }} aria-hidden="true">
-        <span className="blob blob--a" />
-        <span className="blob blob--b" />
-        <span className="blob blob--c" />
-      </motion.div>
-      <div className="hero__lines" aria-hidden="true" />
-
-      <motion.div className="hero__inner" style={{ opacity: fade }}>
-        <motion.div
-          className="hero__meta"
-          variants={fadeUp}
-          initial="hidden"
-          animate={state}
-          custom={0.05}
-        >
-          <span>{t.hero.edition}</span>
-          <span className="hero__meta-mid">
-            {t.hero.location} · <time>{time}</time> GMT+1
-          </span>
-          <span className="pill">
-            <span className="pulse" aria-hidden="true" />
-            {t.hero.status}
-          </span>
-        </motion.div>
-
-        <motion.h1 ref={nameRef} className="hero__name" style={{ y: nameY }}>
-          <span className="hero__line">
-            <motion.span
-              className="hero__line-inner"
-              variants={line}
-              initial="hidden"
-              animate={state}
-              custom={0}
-            >
-              Mohamed
-            </motion.span>
-          </span>
-          <span className="hero__line hero__line--em">
-            <motion.span
-              className="hero__line-inner"
-              variants={line}
-              initial="hidden"
-              animate={state}
-              custom={1}
-            >
-              Jegham<span className="hero__dot">.</span>
-            </motion.span>
-          </span>
-        </motion.h1>
-
-        <div className="hero__bottom">
-          <motion.p
-            className="hero__role"
-            variants={fadeUp}
-            initial="hidden"
-            animate={state}
-            custom={0.55}
-          >
-            {t.hero.role}
-          </motion.p>
-          <motion.div
-            className="hero__pitch"
-            variants={fadeUp}
-            initial="hidden"
-            animate={state}
-            custom={0.65}
-          >
-            <p className="hero__tagline">{t.hero.tagline}</p>
-            <div className="hero__actions">
-              <Magnetic>
-                <a className="btn btn--primary" href="#contact">
-                  {t.hero.ctaPrimary}
-                  <Arrow className="btn__icon" />
-                </a>
-              </Magnetic>
-              <a className="btn btn--ghost" href="#projects">
-                {t.hero.ctaSecondary}
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
-
+    <section className="hero" id="top" aria-label="Introduction">
       <motion.div
-        className="hero__footer"
-        variants={fadeUp}
-        initial="hidden"
-        animate={state}
-        custom={0.85}
+        className="hero__text"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <a href="#about" className="hero__scroll">
-          <span className="hero__scroll-line" aria-hidden="true" />
-          {t.hero.scroll}
-        </a>
-        <a href="#cryptonews" className="hero__now">
-          <span className="hero__now-label">{t.hero.now}</span>
-          <span className="hero__now-name">{t.hero.nowProject}</span>
-          <Arrow />
-        </a>
+        <p className="hero__hello">{h.hello}</p>
+        <h1 className="hero__name">Mohamed Jegham</h1>
+        <p className="hero__role">{h.role}</p>
+        <p className="hero__tagline">{h.tagline}</p>
+
+        <div className="hero__actions">
+          <a className="btn btn--primary" href="#contact">
+            {h.ctaPrimary}
+          </a>
+          <a className="btn btn--secondary" href="#projects">
+            {h.ctaSecondary}
+          </a>
+        </div>
+
+        <ul className="hero__facts">
+          <li>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path
+                d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+              />
+              <circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+            </svg>
+            {h.location}
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path
+                d="M3 9.5 12 5l9 4.5-9 4.5-9-4.5Z M7 11.5V16c0 1.4 2.2 3 5 3s5-1.6 5-3v-4.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinejoin="round"
+              />
+            </svg>
+            {h.school}
+          </li>
+          <li className="hero__status">
+            <span className="dot" aria-hidden="true" />
+            {h.status}
+          </li>
+        </ul>
       </motion.div>
+
+      <motion.figure
+        className="hero__photo"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.1 }}
+      >
+        <img src={portrait} alt={h.photoAlt} width={800} height={1000} fetchPriority="high" />
+        <a href="#cryptonews" className="hero__now">
+          <span className="hero__now-label">{h.now}</span>
+          <span className="hero__now-name">{h.nowProject}</span>
+          <Arrow className="hero__now-icon" />
+        </a>
+      </motion.figure>
     </section>
   );
 }

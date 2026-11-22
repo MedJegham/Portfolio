@@ -1,73 +1,57 @@
-@property --angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
 :root {
-  /* Light — warm paper */
-  --bg: #f3f1ea;
-  --surface: rgba(255, 255, 255, 0.5);
-  --surface-2: #fbfaf6;
-  --ink: #0c0f0e;
-  --ink-2: #2f3633;
-  --ink-muted: #5c6561;
-  --ink-faint: #8b938f;
-  --line: rgba(12, 15, 14, 0.1);
-  --line-strong: rgba(12, 15, 14, 0.2);
-  --accent: #0b7552;
-  --accent-ink: #f3f1ea;
-  --violet: #6b3cf0;
-  --sol-a: #7b3fe4;
-  --sol-b: #0a9e65;
-  --glass: rgba(251, 250, 246, 0.66);
-  --glass-line: rgba(12, 15, 14, 0.09);
-  --aurora-a: rgba(11, 117, 82, 0.2);
-  --aurora-b: rgba(107, 60, 240, 0.14);
-  --aurora-c: rgba(214, 160, 70, 0.22);
-  --grain-opacity: 0.05;
-  --shadow: 0 40px 90px -45px rgba(12, 15, 14, 0.35);
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --surface-2: #f4f3ee;
+  --ink: #1b2130;
+  --ink-2: #3a4152;
+  --ink-muted: #5f6676;
+  --line: #e5e3dc;
+  --line-strong: #d1cec4;
+  --accent: #1f4f8f;
+  --accent-hover: #173d70;
+  --accent-ink: #ffffff;
+  --accent-soft: #e8eef7;
+  --pos: #2e7a4d;
+  --neg: #b23b36;
+  --neu: #6b7280;
+  --amber: #9a6510;
+  --violet: #5b46b5;
+  --shadow: 0 1px 2px rgba(27, 33, 48, 0.06), 0 18px 40px -24px rgba(27, 33, 48, 0.28);
 
-  --font-display: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Instrument Serif", Georgia, serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --gutter: clamp(1rem, 4vw, 3rem);
-  --max: 1280px;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --gutter: clamp(1.25rem, 4vw, 2rem);
+  --max: 1080px;
 
   color: var(--ink);
   background: var(--bg);
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color-scheme: light;
 }
 
 html[data-theme="dark"] {
-  /* Dark — obsidian & phosphor */
-  --bg: #070908;
-  --surface: rgba(255, 255, 255, 0.028);
-  --surface-2: #0d1110;
-  --ink: #eef1ec;
-  --ink-2: #c9cfcb;
-  --ink-muted: #8d9692;
-  --ink-faint: #5b6461;
-  --line: rgba(238, 241, 236, 0.08);
-  --line-strong: rgba(238, 241, 236, 0.17);
-  --accent: #6ff0b6;
-  --accent-ink: #04110b;
-  --violet: #b38cff;
-  --sol-a: #b68cff;
-  --sol-b: #2af5a3;
-  --glass: rgba(13, 17, 16, 0.62);
-  --glass-line: rgba(238, 241, 236, 0.09);
-  --aurora-a: rgba(111, 240, 182, 0.13);
-  --aurora-b: rgba(153, 69, 255, 0.2);
-  --aurora-c: rgba(214, 170, 90, 0.08);
-  --grain-opacity: 0.07;
-  --shadow: 0 50px 120px -50px rgba(0, 0, 0, 0.9);
+  --bg: #13161c;
+  --surface: #1a1e26;
+  --surface-2: #171a21;
+  --ink: #e7e9ee;
+  --ink-2: #c5cad3;
+  --ink-muted: #98a0ad;
+  --line: #2a2f3a;
+  --line-strong: #3b414e;
+  --accent: #8db4ec;
+  --accent-hover: #a9c7f2;
+  --accent-ink: #13161c;
+  --accent-soft: rgba(141, 180, 236, 0.12);
+  --pos: #6cc492;
+  --neg: #ec8b86;
+  --neu: #a3abb8;
+  --amber: #e0b05f;
+  --violet: #b2a4f0;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 18px 40px -24px rgba(0, 0, 0, 0.7);
   color-scheme: dark;
 }
 
@@ -79,29 +63,24 @@ html[data-theme="dark"] {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 4.5rem;
   overflow-x: clip;
 }
 
 body {
   margin: 0;
   min-width: 0;
-  width: 100%;
   overflow-x: clip;
   background: var(--bg);
   color: var(--ink);
-  transition: background-color 0.5s ease, color 0.3s ease;
-}
-
-#root {
-  min-height: 100svh;
-  min-height: 100dvh;
-  overflow-x: clip;
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: var(--accent-soft);
+  color: var(--ink);
 }
 
 a {
@@ -137,26 +116,18 @@ ol {
 h1,
 h2,
 h3,
+h4,
 p,
 dl,
-dd {
+dd,
+figure {
   margin: 0;
-}
-
-h1,
-h2,
-h3 {
-  font-weight: 500;
-}
-
-em {
-  font-style: italic;
 }
 
 :focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 6px;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -167,8 +138,6 @@ em {
   *,
   *::before,
   *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
 }

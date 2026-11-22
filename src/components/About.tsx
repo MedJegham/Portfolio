@@ -1,58 +1,46 @@
-import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
-import { CountUp, Reveal, SectionHead } from "./ui";
-import { EASE } from "../lib/motion";
+import { Reveal, SectionHead } from "./ui";
 
 export function About() {
   const { t } = useLanguage();
 
   return (
-    <section className="section about" id="about">
-      <SectionHead index="01" label={t.about.title} heading={t.about.heading} lead={t.about.lead} />
+    <section className="section" id="about">
+      <SectionHead title={t.about.title} lead={t.about.lead} />
 
-      <div className="about__body">
+      <div className="about">
         <Reveal className="about__text">
           <p>{t.about.body}</p>
         </Reveal>
-        <ul className="stats">
-          {t.about.stats.map((stat, i) => (
-            <motion.li
-              key={stat.label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.9, delay: i * 0.1, ease: EASE }}
-            >
-              <strong>
-                <CountUp value={stat.value} />
-              </strong>
-              <span className="stats__label">{stat.label}</span>
-            </motion.li>
-          ))}
-        </ul>
+        <Reveal delay={0.05}>
+          <ul className="stats">
+            {t.about.stats.map((stat) => (
+              <li key={stat.label}>
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
 
       <Reveal>
-        <p className="kicker">{t.about.educationTitle}</p>
+        <h3 className="subhead">{t.about.educationTitle}</h3>
+        <ul className="edu">
+          {t.about.education.map((edu) => (
+            <li key={edu.school}>
+              <div>
+                <h4>{edu.school}</h4>
+                <p>{edu.degree}</p>
+              </div>
+              <div className="edu__meta">
+                <time>{edu.period}</time>
+                <span>{edu.detail}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
       </Reveal>
-      <ul className="edu">
-        {t.about.education.map((edu, i) => (
-          <motion.li
-            key={edu.school}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.8, delay: i * 0.1, ease: EASE }}
-          >
-            <time className="edu__period">{edu.period}</time>
-            <div>
-              <h3>{edu.school}</h3>
-              <p>{edu.degree}</p>
-            </div>
-            <span className="edu__detail">{edu.detail}</span>
-          </motion.li>
-        ))}
-      </ul>
     </section>
   );
 }
