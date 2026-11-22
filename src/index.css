@@ -1,46 +1,73 @@
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 :root {
-  --bg: #e6ebe7;
-  --bg-elevated: #f3f6f3;
-  --ink: #14201a;
-  --ink-muted: #4a5c52;
-  --accent: #1a5c4a;
-  --accent-soft: rgba(26, 92, 74, 0.12);
-  --line: rgba(20, 32, 26, 0.12);
-  --hero-deep: #0f2a22;
-  --nav-bg: rgba(230, 235, 231, 0.92);
-  --control-bg: rgba(255, 255, 255, 0.45);
-  --body-glow-1: rgba(26, 92, 74, 0.16);
-  --body-glow-2: rgba(180, 140, 70, 0.12);
-  --body-grad-top: #dfe7e1;
-  --body-grad-bottom: #eef2ee;
-  --font-display: "Syne", sans-serif;
-  --font-body: "Outfit", sans-serif;
-  --space: clamp(1rem, 4vw, 2.5rem);
-  --max: 1120px;
+  /* Light — warm paper */
+  --bg: #f3f1ea;
+  --surface: rgba(255, 255, 255, 0.5);
+  --surface-2: #fbfaf6;
+  --ink: #0c0f0e;
+  --ink-2: #2f3633;
+  --ink-muted: #5c6561;
+  --ink-faint: #8b938f;
+  --line: rgba(12, 15, 14, 0.1);
+  --line-strong: rgba(12, 15, 14, 0.2);
+  --accent: #0b7552;
+  --accent-ink: #f3f1ea;
+  --violet: #6b3cf0;
+  --sol-a: #7b3fe4;
+  --sol-b: #0a9e65;
+  --glass: rgba(251, 250, 246, 0.66);
+  --glass-line: rgba(12, 15, 14, 0.09);
+  --aurora-a: rgba(11, 117, 82, 0.2);
+  --aurora-b: rgba(107, 60, 240, 0.14);
+  --aurora-c: rgba(214, 160, 70, 0.22);
+  --grain-opacity: 0.05;
+  --shadow: 0 40px 90px -45px rgba(12, 15, 14, 0.35);
+
+  --font-display: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --max: 1280px;
+
   color: var(--ink);
   background: var(--bg);
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color-scheme: light;
 }
 
 html[data-theme="dark"] {
-  --bg: #0d1411;
-  --bg-elevated: #15201a;
-  --ink: #e8f0ea;
-  --ink-muted: #9baaa3;
-  --accent: #5dba96;
-  --accent-soft: rgba(93, 186, 150, 0.14);
-  --line: rgba(232, 240, 234, 0.12);
-  --hero-deep: #071510;
-  --nav-bg: rgba(13, 20, 17, 0.94);
-  --control-bg: rgba(255, 255, 255, 0.06);
-  --body-glow-1: rgba(93, 186, 150, 0.1);
-  --body-glow-2: rgba(180, 140, 70, 0.08);
-  --body-grad-top: #0a110e;
-  --body-grad-bottom: #101916;
+  /* Dark — obsidian & phosphor */
+  --bg: #070908;
+  --surface: rgba(255, 255, 255, 0.028);
+  --surface-2: #0d1110;
+  --ink: #eef1ec;
+  --ink-2: #c9cfcb;
+  --ink-muted: #8d9692;
+  --ink-faint: #5b6461;
+  --line: rgba(238, 241, 236, 0.08);
+  --line-strong: rgba(238, 241, 236, 0.17);
+  --accent: #6ff0b6;
+  --accent-ink: #04110b;
+  --violet: #b38cff;
+  --sol-a: #b68cff;
+  --sol-b: #2af5a3;
+  --glass: rgba(13, 17, 16, 0.62);
+  --glass-line: rgba(238, 241, 236, 0.09);
+  --aurora-a: rgba(111, 240, 182, 0.13);
+  --aurora-b: rgba(153, 69, 255, 0.2);
+  --aurora-c: rgba(214, 170, 90, 0.08);
+  --grain-opacity: 0.07;
+  --shadow: 0 50px 120px -50px rgba(0, 0, 0, 0.9);
   color-scheme: dark;
 }
 
@@ -52,6 +79,7 @@ html[data-theme="dark"] {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
   overflow-x: clip;
 }
 
@@ -60,23 +88,20 @@ body {
   min-width: 0;
   width: 100%;
   overflow-x: clip;
-  background:
-    radial-gradient(ellipse 90% 60% at 10% -10%, var(--body-glow-1), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 95% 15%, var(--body-glow-2), transparent 50%),
-    linear-gradient(180deg, var(--body-grad-top) 0%, var(--bg) 28%, var(--body-grad-bottom) 100%);
-  transition: background 0.35s ease, color 0.25s ease;
-}
-
-@media (min-width: 781px) {
-  body {
-    background-attachment: fixed;
-  }
+  background: var(--bg);
+  color: var(--ink);
+  transition: background-color 0.5s ease, color 0.3s ease;
 }
 
 #root {
   min-height: 100svh;
   min-height: 100dvh;
   overflow-x: clip;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 a {
@@ -90,12 +115,16 @@ svg {
   max-width: 100%;
 }
 
-button {
+button,
+input {
   font: inherit;
+  color: inherit;
+}
+
+button {
   cursor: pointer;
   border: none;
   background: none;
-  color: inherit;
 }
 
 ul,
@@ -108,6 +137,38 @@ ol {
 h1,
 h2,
 h3,
-p {
+p,
+dl,
+dd {
   margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 500;
+}
+
+em {
+  font-style: italic;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
